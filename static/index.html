@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeFest (CodePen-like) with Timer</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/809722bce4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <center><h1>CodeFest</h1><div id="timer">45:00</div> </center>
+
+  <div class="container">
+    <div class="left">
+      <label><i class="fa-brands fa-html5"></i>HTML</label>
+      <textarea id="html-code" spellcheck="false" onkeyup="run()"></textarea>
+      <label><i class="fa-brands fa-css3-alt"></i>CSS</label>
+      <textarea id="css-code" spellcheck="false" onkeyup="run()"></textarea>
+      <label><i class="fa-solid fa-square-js"></i>JS</label>
+      <textarea id="js-code" spellcheck="false" onkeyup="run()"></textarea>
+    </div>
+    <div class="right">
+      <label ><i class="fa-solid fa-play"></i>Output</label>
+      <iframe id="output"></iframe>
+    </div>
+  </div>
+
+    <div class="submit-container">
+      <button id="submit-btn" type="submit"> Submit</button>
+    </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
