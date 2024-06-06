@@ -36,7 +36,9 @@ function updateTime() {
   setTimeout(updateTime, 1000); // Update timer every second
 }
 
-updateTime(); // Start the timer on page load
+// updateTime(); // Start the timer on page load
+// Start timer on clicking it.
+document.querySelector('#timer').onclick = e => { e.preventDefault(); updateTime(); }
 
 
 let codeForm = document.getElementById("code-form"); // Reference the code form
