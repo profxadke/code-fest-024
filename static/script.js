@@ -5,7 +5,7 @@ function run(){
   let cssCode= document.getElementById("css-code").value;
   let jsCode= document.getElementById("js-code").value;
   let output= document.getElementById("output");
-  let myText=document.querySelector("#html-code").value;
+  // let myText=document.querySelector("#html-code").value;
   // console.log(myText);
 
   output.contentDocument.body.innerHTML = htmlCode +"<style>" + cssCode + "</style>";
@@ -51,7 +51,7 @@ let cssCode = document.getElementById("css-code").value;
 let jsCode = document.getElementById("js-code").value;
 
 // Implement your logic to submit the code (e.g., send to server, display output)
-console.log("Submitting code:");
+// console.log("Submitting code:");
 /*
 console.log("HTML:", htmlCode);
 console.log("CSS:", cssCode);
@@ -61,7 +61,7 @@ let data = {
     'html': btoa(htmlCode),
     'css': btoa(cssCode),
     'js': btoa(jsCode),
-    'time_taken': Number(document.getElementById('timer').innerText.split(':')[0]*60 + document.getElementById('timer').innerText.split(':')[1])
+    'time_taken': Number(document.getElementById('timer').innerText.split(':')[0]*60) + Number(document.getElementById('timer').innerText.split(':')[1])
 }
 
 // console.log(data);
@@ -69,7 +69,9 @@ let data = {
 // Fetch API request(PUT HTTP Request), submitting all these 3 codes in JSON+b64Encoded Code.
 fetch('http://127.0.0.1:2580/code', {
   method: 'PUT',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'application/json', 
+              'X-TOKEN': localStorage.token
+          },
   body: JSON.stringify(data)
  });
 // TODO: Above submission handiling n' stuff..
@@ -77,3 +79,9 @@ fetch('http://127.0.0.1:2580/code', {
 
 // codeForm.addEventListener("submit", submitCode); // Add submit event listener
 document.querySelector("button").onclick = e => { submitCode(e) };
+
+if ( Boolean(localStorage.getItem("token")) ) {
+  const decoded = JSON.parse(atob(localStorage.token.split('.')[1]))
+  document.querySelector("a").remove()
+  document.querySelector("span").innerText = `Welcome! @${decoded.sub}`;
+}
