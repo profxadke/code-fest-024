@@ -40,17 +40,24 @@ function updateTime() {
       text: "Time's Up!",
       icon: "error"
     }).then( e => {
+      stopTimer();
       function updateTime() {};
     })
   }
 
-  setTimeout(updateTime, 1e3); // Update timer every second
+  pid = setTimeout(updateTime, 1e3); // Update timer every second
 }
 
 function updateTimeOnce() {
   if ( !timerStarted ) {
     updateTime();
   }
+}
+
+
+function stopTimer() {
+  clearTimeout(pid);
+  function updateTime() { /* NOTHING! */  };
 }
 
 // updateTime(); // Start the timer on page load
@@ -151,8 +158,10 @@ fetch('http://127.0.0.1:2580/code', {
       title: "Good!",
       text: `File ${json.Good}`,  // TODO: converting seconds to minutes:seconds here.
       icon: "success"
-    });
-    function updateTime() {};
+    }).then(e => {
+      stopTimer();
+      function updateTime() {};
+    })
     document.querySelector("#timer").style.color = "#000";
     document.querySelector("#timer").style.background = "#F00";
   })
