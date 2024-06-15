@@ -39,9 +39,9 @@ function updateTime() {
       title: "Oops!",
       text: "Time's Up!",
       icon: "error"
-    });
-
-    // function updateTime() {}
+    }).then( e => {
+      function updateTime() {};
+    })
   }
 
   setTimeout(updateTime, 1e3); // Update timer every second
