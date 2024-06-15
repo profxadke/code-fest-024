@@ -1,3 +1,4 @@
+/*
 // setTimeout, and clearTimeout enumeration hack
 window.originalSetTimeout = window.setTimeout;
 window.originalClearTimeout = window.clearTimeout;
@@ -12,24 +13,10 @@ window.clearTimeout = function(timerID) {
     window.activeTimers--;
     window.originalClearTimeout(timerID);
 };
-
-//--------------------------------------- to accept code and run in the output section ---------------------------------//
-
-var timerStarted = false;
-
-function run(){
-  let htmlCode= document.getElementById("html-code").value;
-  let cssCode= document.getElementById("css-code").value;
-  let jsCode= document.getElementById("js-code").value;
-  let output= document.getElementById("output");
-  // let myText=document.querySelector("#html-code").value;
-  // console.log(myText);
-
-  output.contentDocument.body.innerHTML = htmlCode +"<style>" + cssCode + "</style>";
-  output.contentWindow.eval(jsCode); }
-
+*/
 
 // -------------------------------------------------------------timer---------------------------------------------//
+var timerStarted = false;
 let initialTime = 45 * 60; // Convert 45 minutes to seconds (45 * 60)
 
 function updateTime() {
@@ -54,7 +41,7 @@ function updateTime() {
       icon: "error"
     });
 
-    function updateTime() {}
+    // function updateTime() {}
   }
 
   setTimeout(updateTime, 1e3); // Update timer every second
@@ -67,6 +54,22 @@ function updateTimeOnce() {
 }
 
 // updateTime(); // Start the timer on page load
+
+//--------------------------------------- to accept code and run in the output section ---------------------------------//
+
+function run(){
+  updateTimeOnce();
+  let htmlCode= document.getElementById("html-code").value;
+  let cssCode= document.getElementById("css-code").value;
+  let jsCode= document.getElementById("js-code").value;
+  let output= document.getElementById("output");
+  // let myText=document.querySelector("#html-code").value;
+  // console.log(myText);
+
+  output.contentDocument.body.innerHTML = htmlCode +"<style>" + cssCode + "</style>";
+  output.contentWindow.eval(jsCode); }
+
+
 // Start timer on clicking it.
 // document.querySelector('#timer').onclick = e => { e.preventDefault(); updateTime(); }
 
@@ -80,10 +83,7 @@ if ( Boolean(localStorage.getItem("token")) ) {
   document.querySelector("h1").innerText = "CodeFest 2024"
   document.querySelector("span").innerText = `Welcome!  `;
   username_elem = document.createElement('span');
-  username_elem.setAttribute('id', 'username');
-  username_elem.innerText = `  @${decoded.sub}`;
-  document.querySelector("span").appendChild(username_elem);
-  img_elem = document.createElement('img');
+  username_elem.setAttribute('id', 'username'); username_elem.innerText = `  @${decoded.sub}`; document.querySelector("span").appendChild(username_elem); img_elem = document.createElement('img');
   img_elem.setAttribute('id', 'avatar');
   img_elem.setAttribute('src', decoded.avatar);
   document.querySelector('center').appendChild(img_elem);
@@ -159,9 +159,11 @@ fetch('http://127.0.0.1:2580/code', {
 }
 
 // Auto-Start timer on code edit.
+/*
 document.querySelectorAll('textarea').forEach( elem => {
   elem.onkeydown = () => { updateTimeOnce(); }
 })
+*/
 
 if ( document.querySelector('#auth') ) {
   document.querySelector('.container').style.paddingLeft = "42%";
