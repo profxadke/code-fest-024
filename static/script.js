@@ -1,4 +1,4 @@
-// setTimeour, and clearTimeout enumeration hack
+// setTimeout, and clearTimeout enumeration hack
 window.originalSetTimeout = window.setTimeout;
 window.originalClearTimeout = window.clearTimeout;
 window.activeTimers = 0;
@@ -45,11 +45,14 @@ function updateTime() {
     initialTime--;
     
   } else {
-    // Handle timer completion (e.g., disable editing, display alert)
-       
     document.querySelector("#timer").style.background = "#F00"
 
-    alert("Time's Up!"); // Use sweetAlert here..
+    // alert("Time's Up!"); // Use sweetAlert here..
+    Swal.fire({
+      title: "Oops!",
+      text: "Time's Up!",
+      icon: "error"
+    });
 
     function updateTime() {}
   }
@@ -143,7 +146,12 @@ fetch('http://127.0.0.1:2580/code', {
   body: JSON.stringify(data)
  }).then( async ( resp ) => {
     let json = await resp.json();
-    console.log(json);  // TODO: Show in UI using, sweetAlert.
+    // console.log(json);
+    Swal.fire({
+      title: "Good!",
+      text: `File ${json.Good}`,  // TODO: converting seconds to minutes:seconds here.
+      icon: "success"
+    });
     function updateTime() {};
     document.querySelector("#timer").style.color = "#000";
     document.querySelector("#timer").style.background = "#F00";
