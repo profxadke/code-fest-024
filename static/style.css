@@ -28,7 +28,7 @@
 }
 textarea{
     width: 100%;
-    height: 28%;
+    height: 77%;
     background: #1f1f1f;
     color: #fff;
     padding: 10px 20px;
@@ -38,7 +38,8 @@ textarea{
 }
 iframe{
     width: 100%;
-    height: 89%;
+    height: 135%;
+    /* height: 89%; */
     background: #fff;
     border: 0;
     outline: 0;
