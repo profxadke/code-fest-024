@@ -80,6 +80,13 @@ if ( Boolean(localStorage.getItem("token")) ) {
   username_elem.setAttribute('id', 'username');
   username_elem.innerText = `  @${decoded.sub}`;
   document.querySelector("span").appendChild(username_elem);
+  img_elem = document.createElement('img');
+  img_elem.setAttribute('id', 'avatar');
+  img_elem.setAttribute('src', decoded.avatar);
+  document.querySelector('center').appendChild(img_elem);
+  // TODO: onclick_img_elem => logout_dropdown.
+  document.querySelector('center').appendChild(document.createElement('br'));
+  document.querySelector('center').appendChild(document.createElement('br'));
   document.querySelector('#app').innerHTML = `
 <center>
       <div id="timer">45:00</div>

@@ -128,3 +128,12 @@ label {
 #username {
   font-family: monospace;
 }
+
+#avatar {
+  /* border-radius: 100%; */
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /* float: right; */
+}
