@@ -11,8 +11,17 @@
 </head>
 <body>
     <center>
-      <h1>CodeFest</h1> <br />
-      <a id="auth" href="/auth/login"><input type="submit" id="oauth" value="Login with GitHub!"></input></a> <span> (Refresh [CTRL+R], if you don't see your username here after OAUTH.) </span> <br /> <br />
+      <h1>CodeFest</h1>
+      <!-- <a id="auth" href="/auth/login"><input type="submit" id="oauth" value="Login with GitHub!"></input></a> <span> (Refresh [CTRL+R], if you don't see your username here after OAUTH.) </span> <br /> <br /> -->
+        <div class="container">
+        <a id="auth" href="/auth/login" class="github-button">
+          <img src="github-icon.png" alt="GitHub Icon" class="github-icon">
+          Login with GitHub
+        </a>
+      </div>
+      <span> (Refresh [CTRL+R], if you don't see your username here after OAUTH.) </span>
+      <br /> <br />
+
       <!-- <div id="timer">45:00</div> -->
     </center>
 

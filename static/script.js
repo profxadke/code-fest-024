@@ -143,6 +143,10 @@ document.querySelectorAll('textarea').forEach( elem => {
   elem.onkeydown = () => { updateTimeOnce(); }
 })
 
+if ( document.querySelector('#auth') ) {
+  document.querySelector('.container').style.paddingLeft = "42%";
+}
+
 // codeForm.addEventListener("submit", submitCode); // Add submit event listener
 if ( document.querySelector('button') ) {
     document.querySelector("button").onclick = e => {   e.preventDefault(); submitCode() };
