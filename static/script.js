@@ -74,7 +74,12 @@ function updateTimeOnce() {
 if ( Boolean(localStorage.getItem("token")) ) {
   const decoded = JSON.parse(atob(localStorage.token.split('.')[1]))
   document.querySelector("a").remove()
-  document.querySelector("span").innerText = `Welcome! @${decoded.sub}`;
+  document.querySelector("h1").innerText = "CodeFest 2024"
+  document.querySelector("span").innerText = `Welcome!  `;
+  username_elem = document.createElement('span');
+  username_elem.setAttribute('id', 'username');
+  username_elem.innerText = `  @${decoded.sub}`;
+  document.querySelector("span").appendChild(username_elem);
   document.querySelector('#app').innerHTML = `
 <center>
       <div id="timer">45:00</div>
