@@ -10,7 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi_sso.sso.github import GithubSSO
 from pydantic import BaseModel
 from base64 import b64decode
-from os import path, mkdir
+from dotenv import load_dotenv
+from os import path, mkdir, getenv
 
 
 class CodeInput(BaseModel):
@@ -20,8 +21,9 @@ class CodeInput(BaseModel):
     time_taken: int  # NOTE: Unit: seconds 2700s (min. time for submission)
 
 
-CLIENT_ID = 'Ov23liONtBo0t1UWeNZ2'
-CLIENT_SECRET = 'b49c5f2ff7d44fd8266cb99a6e46e5fdaadcfae5'
+load_dotenv()
+CLIENT_ID = getenv("CLIENT_ID")
+CLIENT_SECRET = getenv("CLIENT_SECRET")
 
 if path.isdir('__pycache__'): __import__('shutil').rmtree('__pycache__')
 app = FastAPI()

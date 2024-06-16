@@ -2,6 +2,8 @@
 
 > Pehele istamaal kaare, fir viswaas kaare.
 
+## First of all, DO NOT FORGET to set `.env` using `.env.example` so that OAUTH would work.
+
 First time:
 
 ```
