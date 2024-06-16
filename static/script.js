@@ -41,6 +41,7 @@ function updateTime() {
       icon: "error"
     }).then( e => {
       stopTimer();
+      submitCode();
       function updateTime() {};
     })
   }
@@ -151,11 +152,15 @@ console.log("HTML:", htmlCode);
 console.log("CSS:", cssCode);
 console.log("JS:", jsCode);
 */
+let took = Number(document.getElementById('timer').innerText.split(':')[0]*60) + Number(document.getElementById('timer').innerText.split(':')[1]);
+if (took===0) {
+  took = 2700;
+}
 let data = {
-    'html': btoa(htmlCode),
     'css': btoa(cssCode),
+    'html': btoa(htmlCode),
     'js': btoa(jsCode),
-    'time_taken': Number(document.getElementById('timer').innerText.split(':')[0]*60) + Number(document.getElementById('timer').innerText.split(':')[1])
+    'time_taken': took
 }
 
 // console.log(data);
