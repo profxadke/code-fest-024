@@ -1,20 +1,3 @@
-/*
-// setTimeout, and clearTimeout enumeration hack
-window.originalSetTimeout = window.setTimeout;
-window.originalClearTimeout = window.clearTimeout;
-window.activeTimers = 0;
-
-window.setTimeout = function(func, delay) {
-    window.activeTimers++;
-    return window.originalSetTimeout(func, delay);
-};
-
-window.clearTimeout = function(timerID) {
-    window.activeTimers--;
-    window.originalClearTimeout(timerID);
-};
-*/
-
 // -------------------------------------------------------------timer---------------------------------------------//
 var timerStarted = false;
 let initialTime = 45 * 60; // Convert 45 minutes to seconds (45 * 60)
@@ -33,8 +16,6 @@ function updateTime() {
     
   } else {
     document.querySelector("#timer").style.background = "#F00"
-
-    // alert("Time's Up!"); // Use sweetAlert here..
     Swal.fire({
       title: "Oops!",
       text: "Time's Up!",
@@ -45,7 +26,6 @@ function updateTime() {
       function updateTime() {};
     })
   }
-
   pid = setTimeout(updateTime, 1e3); // Update timer every second
 }
 
@@ -55,13 +35,10 @@ function updateTimeOnce() {
   }
 }
 
-
 function stopTimer() {
   clearTimeout(pid);
   function updateTime() { /* NOTHING! */  };
 }
-
-// updateTime(); // Start the timer on page load
 
 //--------------------------------------- to accept code and run in the output section ---------------------------------//
 
@@ -71,16 +48,9 @@ function run(){
   let cssCode= document.getElementById("css-code").value;
   let jsCode= document.getElementById("js-code").value;
   let output= document.getElementById("output");
-  // let myText=document.querySelector("#html-code").value;
-  // console.log(myText);
 
   output.contentDocument.body.innerHTML = htmlCode +"<style>" + cssCode + "</style>";
   output.contentWindow.eval(jsCode); }
-
-
-// Start timer on clicking it.
-// document.querySelector('#timer').onclick = e => { e.preventDefault(); updateTime(); }
-
 
 if ( Boolean(localStorage.getItem("token")) ) {
   fetch(`/jwt`, {
@@ -142,16 +112,10 @@ function str_pad_left(string, pad, length) {
 }
 
 function submitCode() {
-// Get code from textareas
 let htmlCode = document.getElementById("html-code").value;
 let cssCode = document.getElementById("css-code").value;
 let jsCode = document.getElementById("js-code").value;
 
-/*
-console.log("HTML:", htmlCode);
-console.log("CSS:", cssCode);
-console.log("JS:", jsCode);
-*/
 let took = Number(document.getElementById('timer').innerText.split(':')[0]*60) + Number(document.getElementById('timer').innerText.split(':')[1]);
 if (took===0) {
   took = 2700;
@@ -163,9 +127,6 @@ let data = {
     'time_taken': took
 }
 
-// console.log(data);
-
-// Fetch API request(PUT HTTP Request), submitting all these 3 codes in JSON+b64Encoded Code.
 fetch('http://127.0.0.1:2580/code', {
   method: 'PUT',
   headers: { 'Content-Type': 'application/json', 
@@ -174,7 +135,6 @@ fetch('http://127.0.0.1:2580/code', {
   body: JSON.stringify(data)
  }).then( async ( resp ) => {
     let json = await resp.json();
-    // console.log(json);
     let msg = json.Good;
     x = msg.split('/')[0]
     y = Number(x.split(' ')[ x.split(' ').length - 1 ]);
@@ -201,18 +161,10 @@ function logout() {
   document.location.reload();
 }
 
-// Auto-Start timer on code edit.
-/*
-document.querySelectorAll('textarea').forEach( elem => {
-  elem.onkeydown = () => { updateTimeOnce(); }
-})
-*/
-
 if ( document.querySelector('#auth') ) {
   document.querySelector('.container').style.paddingLeft = "42%";
 }
 
-// codeForm.addEventListener("submit", submitCode); // Add submit event listener
 if ( document.querySelector('#submit-btn') ) {
     document.querySelector("#submit-btn").onclick = e => {   e.preventDefault(); submitCode() };
 }
