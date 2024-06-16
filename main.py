@@ -54,7 +54,7 @@ sso = GithubSSO(
 )
 
 
-@app.get('/', response_class=HTMLResponse)
+@app.get('/', response_class=HTMLResponse, include_in_schema=False)
 def return_index(request: Request):
     if path.isdir('__pycache__'): __import__('shutil').rmtree('__pycache__')
     token = request.cookies.get("token")
@@ -67,7 +67,7 @@ def return_index(request: Request):
 
 
 @app.get("/auth/login")
-async def oauth_init():
+async def oAuth_login():
     """Github OAUTH Redirection.."""
     if path.isdir('__pycache__'): __import__('shutil').rmtree('__pycache__')
     with sso:
@@ -132,7 +132,7 @@ def validate(token: Token):
         return decoded
 
 
-@app.get('/{file_path:path}')
+@app.get('/{file_path:path}', include_in_schema=False)
 def return_static_file(file_path: str):
     if path.isdir('__pycache__'): __import__('shutil').rmtree('__pycache__')
     if path.isfile(f'static/{file_path}'):
