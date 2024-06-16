@@ -2,7 +2,11 @@
 
 > Pehele istamaal kaare, fir viswaas kaare.
 
-## First of all, DO NOT FORGET to set `.env` using `.env.example` so that OAUTH would work.
+### First of all, DO NOT FORGET to set `.env` using `.env.example` so that OAUTH would work.
+```
+cp .env.example .env
+vim .env  # or, lvim/nvim/nano/mousepad would work too.
+```
 
 First time:
 
