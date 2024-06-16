@@ -14,6 +14,10 @@ from dotenv import load_dotenv
 from os import path, mkdir, getenv
 
 
+class Token(BaseModel):
+    token: str
+
+
 class CodeInput(BaseModel):
     html: str
     css: str
@@ -117,6 +121,15 @@ def save_code(code: CodeInput, request: Request):
         open(f"{dir_path}/took.txt", "w").write(str(time_taken))
         return {'Good': f'Uploaded! You took {time_taken}/2700 seconds to complete the given task.'}
     raise HTTPException(detail="Authenticate yourself, first.", status_code=401)
+
+
+@app.post('/jwt', include_in_schema=False)
+def validate(token: Token):
+    decoded = jwt.decode(token.token, CLIENT_SECRET, algorithms="HS256")
+    if decoded:
+        decoded = dict(decoded)
+        decoded['valid'] = True
+        return decoded
 
 
 @app.get('/{file_path:path}')

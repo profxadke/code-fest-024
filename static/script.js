@@ -85,48 +85,56 @@ function run(){
 
 
 if ( Boolean(localStorage.getItem("token")) ) {
-  // TODO: Validate JWT for authorization (server-side.)
-  const decoded = JSON.parse(atob(localStorage.token.split('.')[1]))
-  document.querySelector("a").remove()
-  document.querySelector("h1").innerText = "CodeFest 2024"
-  document.querySelector("span").innerText = `Welcome!  `;
-  username_elem = document.createElement('span');
-  username_elem.setAttribute('id', 'username'); username_elem.innerText = `  @${decoded.sub}!`; document.querySelector("span").appendChild(username_elem); img_elem = document.createElement('img');
-  img_elem.setAttribute('id', 'avatar');
-  img_elem.setAttribute('src', decoded.avatar);
-  document.querySelector('center').appendChild(img_elem);
-  document.querySelector('center').appendChild(document.createElement('br'));
-  // document.querySelector('center').appendChild(document.createElement('br'));
-  document.querySelector('#app').innerHTML = `
-<center>
-      <div class="dropdown">
-        <button class="dropbtn">OAUTH</button>
-        <div class="dropdown-content">
-          <a href="#" onclick="logout()">Logout</a>
-        </div>
-      </div>
-      <br /> <br />
-      <div id="timer">45:00</div>
-</center>
-  <div class="container">
-    <div class="left">
-      <label><i class="fa-brands fa-html5"></i>HTML</label>
-      <textarea id="html-code" spellcheck="false" onkeyup="run()"></textarea>
-      <label><i class="fa-brands fa-css3-alt"></i>CSS</label>
-      <textarea id="css-code" spellcheck="false" onkeyup="run()"></textarea>
-      <label><i class="fa-brands fa-js"></i>JS</label>
-      <textarea id="js-code" spellcheck="false" onkeyup="run()"></textarea>
-    </div>
-    <div class="right">
-      <label ><i class="fa-solid fa-play"></i>Output</label>
-      <iframe id="output"></iframe>
-    </div>
-  </div>
-
-    <div class="submit-container">
-<button id="submit-btn" type="submit"> Submit</button>
-    </div>
-`;
+  fetch(`/jwt`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({token: localStorage.token})
+  }).then( resp => {
+      resp.json().then( resp_json => {
+        if (resp_json.valid) {
+          const decoded = JSON.parse(atob(localStorage.token.split('.')[1]))
+          document.querySelector("a").remove()
+          document.querySelector("h1").innerText = "CodeFest 2024"
+          document.querySelector("span").innerText = `Welcome!  `;
+          username_elem = document.createElement('span');
+          username_elem.setAttribute('id', 'username'); username_elem.innerText = `  @${decoded.sub}!`; document.querySelector("span").appendChild(username_elem); img_elem = document.createElement('img');
+          img_elem.setAttribute('id', 'avatar');
+          img_elem.setAttribute('src', decoded.avatar);
+          document.querySelector('center').appendChild(img_elem);
+          document.querySelector('center').appendChild(document.createElement('br'));
+          // document.querySelector('center').appendChild(document.createElement('br'));
+          document.querySelector('#app').innerHTML = `
+        <center>
+              <div class="dropdown">
+                <button class="dropbtn">OAUTH</button>
+                <div class="dropdown-content">
+                  <a href="#" onclick="logout()">Logout</a>
+                </div>
+              </div>
+              <br /> <br />
+              <div id="timer">45:00</div>
+        </center>
+          <div class="container">
+            <div class="left">
+              <label><i class="fa-brands fa-html5"></i>HTML</label>
+              <textarea id="html-code" spellcheck="false" onkeyup="run()"></textarea>
+              <label><i class="fa-brands fa-css3-alt"></i>CSS</label>
+              <textarea id="css-code" spellcheck="false" onkeyup="run()"></textarea>
+              <label><i class="fa-brands fa-js"></i>JS</label>
+              <textarea id="js-code" spellcheck="false" onkeyup="run()"></textarea>
+            </div>
+            <div class="right">
+              <label ><i class="fa-solid fa-play"></i>Output</label>
+              <iframe id="output"></iframe>
+            </div>
+          </div>
+          <div class="submit-container">
+            <button id="submit-btn" type="submit"> Submit</button>
+          </div>
+        `;
+      }
+    })
+  })
 }
 
 let codeForm = document.getElementById("code-form"); // Reference the code form
