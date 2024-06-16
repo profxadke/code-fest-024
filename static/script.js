@@ -191,6 +191,6 @@ if ( document.querySelector('#auth') ) {
 }
 
 // codeForm.addEventListener("submit", submitCode); // Add submit event listener
-if ( document.querySelector('button') ) {
-    document.querySelector("button").onclick = e => {   e.preventDefault(); submitCode() };
+if ( document.querySelector('#submit-btn') ) {
+    document.querySelector("#submit-btn").onclick = e => {   e.preventDefault(); submitCode() };
 }
