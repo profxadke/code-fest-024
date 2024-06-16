@@ -115,7 +115,7 @@ if ( Boolean(localStorage.getItem("token")) ) {
       <textarea id="html-code" spellcheck="false" onkeyup="run()"></textarea>
       <label><i class="fa-brands fa-css3-alt"></i>CSS</label>
       <textarea id="css-code" spellcheck="false" onkeyup="run()"></textarea>
-      <label><i class="fa-solid fa-square-js"></i>JS</label>
+      <label><i class="fa-brands fa-js"></i>JS</label>
       <textarea id="js-code" spellcheck="false" onkeyup="run()"></textarea>
     </div>
     <div class="right">
