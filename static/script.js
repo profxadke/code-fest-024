@@ -81,9 +81,6 @@ function run(){
 // document.querySelector('#timer').onclick = e => { e.preventDefault(); updateTime(); }
 
 
-
-
-
 if ( Boolean(localStorage.getItem("token")) ) {
   fetch(`/jwt`, {
     method: "POST",
