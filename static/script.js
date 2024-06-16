@@ -96,9 +96,16 @@ if ( Boolean(localStorage.getItem("token")) ) {
   document.querySelector('center').appendChild(img_elem);
   // TODO: onclick_img_elem => logout_dropdown.
   document.querySelector('center').appendChild(document.createElement('br'));
-  document.querySelector('center').appendChild(document.createElement('br'));
+  // document.querySelector('center').appendChild(document.createElement('br'));
   document.querySelector('#app').innerHTML = `
 <center>
+      <div class="dropdown">
+        <button class="dropbtn">OAUTH</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="logout()">Logout</a>
+        </div>
+      </div>
+      <br /> <br />
       <div id="timer">45:00</div>
 </center>
   <div class="container">
@@ -165,6 +172,11 @@ fetch('http://127.0.0.1:2580/code', {
     document.querySelector("#timer").style.color = "#000";
     document.querySelector("#timer").style.background = "#F00";
   })
+}
+
+function logout() {
+  delete(localStorage.token);
+  document.location.reload();
 }
 
 // Auto-Start timer on code edit.
