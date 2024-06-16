@@ -85,6 +85,7 @@ function run(){
 
 
 if ( Boolean(localStorage.getItem("token")) ) {
+  // TODO: Validate JWT for authorization (server-side.)
   const decoded = JSON.parse(atob(localStorage.token.split('.')[1]))
   document.querySelector("a").remove()
   document.querySelector("h1").innerText = "CodeFest 2024"
