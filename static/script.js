@@ -132,6 +132,10 @@ if ( Boolean(localStorage.getItem("token")) ) {
 
 let codeForm = document.getElementById("code-form"); // Reference the code form
 
+function str_pad_left(string, pad, length) {
+  return (new Array(length + 1).join(pad) + string).slice(-length);
+}
+
 function submitCode() {
 // Get code from textareas
 let htmlCode = document.getElementById("html-code").value;
@@ -162,9 +166,17 @@ fetch('http://127.0.0.1:2580/code', {
  }).then( async ( resp ) => {
     let json = await resp.json();
     // console.log(json);
+    let msg = json.Good;
+    x = msg.split('/')[0]
+    y = Number(x.split(' ')[ x.split(' ').length - 1 ]);
+    x = Math.floor(y / 60);
+    z = y - x * 60;
+    time_taken = str_pad_left(x, '0', 2) + ':' + str_pad_left(z, '0', 2);
+    msg = msg.replace(String(y), time_taken);
+    msg = msg.replace('2700', '45:00');
     Swal.fire({
       title: "Good!",
-      text: `File ${json.Good}`,  // TODO: converting seconds to minutes:seconds here.
+      text: `File ${msg}`,
       icon: "success"
     }).then(e => {
       stopTimer();
