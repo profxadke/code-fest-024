@@ -82,8 +82,8 @@ label {
   }
   
   #submit-btn {
-    background-color: #4CAF50; /* Green color */
-    color: white;
+    background-color: #000;
+    color: #FFF;
     padding: 15px 32px; /* Adjust padding for button size */
     text-align: center;
     text-decoration: none;
@@ -91,12 +91,13 @@ label {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 25px; /* Rounded corners */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   }
   
   #submit-btn:hover { /* Button hover effect */
-    background-color: #45a049;
+    background-color: #FFF;
+    color: #000;
     opacity: 0.8;
   }
 

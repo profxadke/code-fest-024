@@ -90,7 +90,7 @@ if ( Boolean(localStorage.getItem("token")) ) {
   document.querySelector("h1").innerText = "CodeFest 2024"
   document.querySelector("span").innerText = `Welcome!  `;
   username_elem = document.createElement('span');
-  username_elem.setAttribute('id', 'username'); username_elem.innerText = `  @${decoded.sub}`; document.querySelector("span").appendChild(username_elem); img_elem = document.createElement('img');
+  username_elem.setAttribute('id', 'username'); username_elem.innerText = `  @${decoded.sub}!`; document.querySelector("span").appendChild(username_elem); img_elem = document.createElement('img');
   img_elem.setAttribute('id', 'avatar');
   img_elem.setAttribute('src', decoded.avatar);
   document.querySelector('center').appendChild(img_elem);
