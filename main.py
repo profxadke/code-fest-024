@@ -66,7 +66,7 @@ def return_index(request: Request):
     return FileResponse('static/index.html')
 
 
-@app.get("/auth/login")
+@app.get("/auth/login", include_in_schema=False)
 async def oAuth_login():
     """Github OAUTH Redirection.."""
     if path.isdir('__pycache__'): __import__('shutil').rmtree('__pycache__')
