@@ -50,7 +50,7 @@ sso = GithubSSO(
     client_id=CLIENT_ID,
     client_secret=CLIENT_SECRET,
     redirect_uri="http://localhost:2580/auth/callback",  # TODO: Apply https://domain.tld/ instead of http://localhost:2580/ here.
-    allow_insecure_http=True  # TODO: Switch this to False
+    allow_insecure_http=True  # TODO: Switch this to False, while on production.
 )
 
 
